@@ -1,0 +1,14 @@
+material roundabout
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture roundabout.png
+      }
+    }
+  }
+}
+

@@ -1,0 +1,14 @@
+material intersection
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture intersection.png
+      }
+    }
+  }
+}
+

@@ -1,0 +1,14 @@
+material course_Lane
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture course_Lane.png
+      }
+    }
+  }
+}
+

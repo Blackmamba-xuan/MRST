@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="roundabout">
+    <static>true</static>
+    <link name="roundabout_link">
+      <collision name="roundabout_collision">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <!-- <size>6.5 4</size> -->
+            <size>8.5 8.5</size>
+          </plane>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="roundabout_visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+	        <plane>
+            <normal>0 0 1</normal>
+            <size>8.5 8.5</size>
+            <!-- <size>6.5 4</size> -->
+          </plane>
+        </geometry>
+	      <material>
+          <script>
+            <!--uri>file://materials/scripts/floor.material</uri-->
+            <uri>model://turtlebot3_autorace/roundabout/materials/scripts</uri>
+            <uri>model://turtlebot3_autorace/roundabout/materials/textures</uri>
+            <name>roundabout</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+

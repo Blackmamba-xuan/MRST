@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="intersection">
+    <static>true</static>
+    <link name="intersection_link">
+      <collision name="intersection_collision">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>11.5 7</size>
+          </plane>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="intersection_visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+	        <plane>
+            <normal>0 0 1</normal>
+            <size>11.5 7</size>
+          </plane>
+        </geometry>
+	      <material>
+          <script>
+            <!--uri>file://materials/scripts/floor.material</uri-->
+            <uri>model://turtlebot3_autorace/intersection/materials/scripts</uri>
+            <uri>model://turtlebot3_autorace/intersection/materials/textures</uri>
+            <name>intersection</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+

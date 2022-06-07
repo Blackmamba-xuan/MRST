@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="course_crossLane">
+    <static>true</static>
+    <link name="course_crossLane_link">
+      <collision name="course_crossLane_collision">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>3 1</size>
+          </plane>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="course_crossLane_visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+	        <plane>
+            <normal>0 0 1</normal>
+            <size>3 1</size>
+          </plane>
+        </geometry>
+	      <material>
+          <script>
+            <!--uri>file://materials/scripts/floor.material</uri-->
+            <uri>model://turtlebot3_autorace/course_crossLnae/materials/scripts</uri>
+            <uri>model://turtlebot3_autorace/course_crossLnae/materials/textures</uri>
+            <name>course_Lane</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
+
