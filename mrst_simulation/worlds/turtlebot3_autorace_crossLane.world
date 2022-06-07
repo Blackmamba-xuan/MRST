@@ -1,0 +1,227 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <scene>
+      <ambient>0 0 0 1</ambient>
+      <shadows>0</shadows>
+      <grid>0</grid>
+      <background>0.7 0.7 0.7 1</background>
+    </scene>
+
+    <include>
+      <uri>model://turtlebot3_autorace/course2</uri>
+      <pose> 0 0 0 0 0 0</pose>
+    </include>
+
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+    <model name='ground2'>
+      <pose frame=''>0 0 -0.1 0 -0 0</pose>
+      <static>1</static>
+      <link name='ground'>
+        <collision name='ground_coll'>
+          <geometry>
+            <box>
+              <size>8 8 0.01</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='ground_vis'>
+          <geometry>
+            <box>
+              <size>10 10 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/FlatBlack</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates> 
+ 
+    <light name='user_point_light_2' type='point'>
+      <pose frame=''>-0.948146 0.604519 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>    
+    <light name='user_point_light_6' type='point'>
+      <pose frame=''>1.63854 1.69565 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+    <light name='user_point_light_7' type='point'>
+      <pose frame=''>0.42  -3.31 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+
+    <light name='user_point_light_8' type='point'>
+      <pose frame=''>-1.8 1.5 1 0 -0 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <direction>0 0 -1</direction>
+    </light>
+    <state world_name='default'>
+      <sim_time>116 345000000</sim_time>
+      <real_time>32 693566475</real_time>
+      <wall_time>1525097329 747995208</wall_time>
+      <iterations>32558</iterations>
+      <model name='ground'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='ground'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      
+
+      
+      
+
+      <model name='unit_box'>
+        <pose frame=''>-1.72  0.56 0.12 0 0 -0.0 </pose>
+        <scale>1 1 1</scale>
+        <link name='traffic_bar'>
+          <pose frame=''>-1.72  0.56 0.12 0 0 -0.0 </pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>1.06648 0.03546 4.20605 2.1745 -1.41657 3.10996</acceleration>
+          <wrench>1.06648 0.03546 4.20605 0 -0 0</wrench>
+        </link>
+	<static>1</static>
+      </model>
+      <model name='unit_sphere'>
+        <pose frame=''>1.39 -1.57 0.111741 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='light_r'>
+          <pose frame=''>1.39 -1.57 0.111741 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+	<static>1</static>
+      </model>
+      <model name='unit_sphere_clone'>
+        <pose frame=''>1.39 -1.57 0.211741 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='light_g'>
+          <pose frame=''>1.39 -1.57 0.211741 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+	<static>1</static>
+      </model>
+      <model name='unit_sphere_clone_clone'>
+        <pose frame=''>1.39 -1.57 0.311741 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='light_y'>
+          <pose frame=''>1.39 -1.57 0.311741 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+	<static>1</static>
+      </model>
+
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>      
+      <light name='user_point_light_2'>
+        <pose frame=''>-0.948146 0.604519 1 0 -0 0</pose>
+      </light>
+      <light name='user_point_light_6'>
+        <pose frame=''>1.63854 1.69565 1 0 -0 0</pose>
+      </light>
+      <light name='user_point_light_7'>
+        <pose frame=''>0.42  -3.31 1 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>2.7696 -1.93094 6.71513 0 1.1618 2.27182</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    
+     
+  </world>
+</sdf>

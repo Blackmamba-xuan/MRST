@@ -1,0 +1,68 @@
+<launch>
+  <env name="GAZEBO_RESOURCE_PATH" value="$(find turtlebot3_gazebo)/models/turtlebot3_autorace/ground_picture" />
+
+  <!-- robot5 -->
+  <arg name="x_pos" default="-0.574424"/>
+  <arg name="y_pos" default="0.633950"/>
+  <arg name="z_pos" default="-0.001005"/>  
+  <arg name="r_pos" default="-0.000017"/>
+  <arg name="p_pos" default="0.007752"/>
+  <arg name="yaw_pos" default="-1.601690"/>  
+  <!-- robot6 -->
+  <arg name="x_pos2" default="-0.796832"/>
+  <arg name="y_pos2" default="0.155577"/>
+  <arg name="z_pos2" default="-0.001004"/>
+  <arg name="r_pos2" default="-0.000022"/>
+  <arg name="p_pos2" default="0.007743"/>
+  <arg name="yaw_pos2" default="-1.507076"/>   
+  <!-- robot7 -->
+  <arg name="x_pos3" default="-0.566495"/>
+  <!-- <arg name="x_pos3" default="-0.427682"/> -->
+  <arg name="y_pos3" default="0.017774"/>
+  <arg name="z_pos3" default="-0.001002"/>
+   <arg name="r_pos3" default="-0.000014"/>
+  <arg name="p_pos3" default="0.007723"/>
+  <arg name="yaw_pos3" default="-1.511452"/>
+
+  <!-- robot8 -->
+  <arg name="x_pos4" default="-0.769861"/>
+  <!-- <arg name="x_pos3" default="-0.427682"/> -->
+  <arg name="y_pos4" default="-0.682819"/>
+  <arg name="z_pos4" default="-0.001003"/>
+   <arg name="r_pos4" default="-0.000014"/>
+  <arg name="p_pos4" default="0.007728"/>
+  <arg name="yaw_pos4" default="-1.444514"/>
+
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_autorace_real.world" />
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <group ns="robot5">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger_for_autorace.urdf.xacro" />
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model robot5 -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -R $(arg r_pos) -P $(arg p_pos) -Y $(arg yaw_pos) -param robot_description" />
+  </group>
+
+  <group ns="robot6">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger_for_autorace.urdf.xacro" />
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model robot6 -x $(arg x_pos2) -y $(arg y_pos2) -z $(arg z_pos2) -R $(arg r_pos2) -P $(arg p_pos2) -Y $(arg yaw_pos2) -param robot_description" />
+  </group>
+
+  <group ns="robot7">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger_for_autorace.urdf.xacro" />
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model robot7 -x $(arg x_pos3) -y $(arg y_pos3) -z $(arg z_pos3) -R $(arg r_pos3) -P $(arg p_pos3) -Y $(arg yaw_pos3) -param robot_description" />
+  </group>
+
+  <group ns="robot8">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_burger_for_autorace.urdf.xacro" />
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" args="-urdf -model robot8 -x $(arg x_pos4) -y $(arg y_pos4) -z $(arg z_pos4) -R $(arg r_pos4) -P $(arg p_pos4) -Y $(arg yaw_pos4) -param robot_description" />
+  </group>
+
+</launch>
+
+
