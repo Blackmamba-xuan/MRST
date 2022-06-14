@@ -79,7 +79,7 @@ from Env import Env
 
 ## Documentation
 
-For more detalis, please check our [documentaion]().
+For more detalis, please check our [documentaion](https://mrst.readthedocs.io/en/latest/).
 
 ### Simple Example
 
