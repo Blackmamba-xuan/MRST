@@ -81,6 +81,4 @@ from Env import Env
 
 For more detalis, please check our [documentaion](https://mrst.readthedocs.io/en/latest/).
 
-### Simple Example
-
 
