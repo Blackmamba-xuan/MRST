@@ -47,7 +47,7 @@ Simple Example
 
 .. toctree::
    :maxdepth: 2
-   :caption: What is more?:
+   :caption: Contents:
    
    Getting start with MRST/index
    MRST Scenarios/index
