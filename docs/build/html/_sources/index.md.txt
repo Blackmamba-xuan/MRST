@@ -1,0 +1,36 @@
+.. MRST documentation master file, created by
+   sphinx-quickstart on Tue Jun  7 02:59:05 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to MRST's documentation!
+================================
+
+Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.
+
+Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   
+   Getting start with MRST/index
+   MRST Scenarios/index
+   How to customize the robot/index
+   Support for ROS Developer/index
+   MRRL Research/index
+
+Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.
+
+Check out the paper at Link From Multi-agent to Multi-robot: Scalable Training Platform for Multi-robot Reinforcement Learning for background on some of the project goals.
+Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.
+
+Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

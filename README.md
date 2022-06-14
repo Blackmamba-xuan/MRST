@@ -33,6 +33,18 @@ catkin_make
 
 We implement several high impact reinforcement learning algorithms and extend them to multi-robot areas.
 
+- [x] Indepent Q-learning
+- [x] MADDPG
+- [x] COMA
+- [x] MAAC
+- [x] MASAC
+- [x] IPPO
+- [x] MAPPO
+- [x] VDN
+- [x] QMIX 
+- [x] Hierarchical RL
+- [x] Others
+
 ## Running the Simulation
 
 Use the roslaunch command to run the simulator:
@@ -42,12 +54,32 @@ Use the roslaunch command to run the simulator:
 roslaunch mrst_simulation turtlebot3_autorace_crossLane.launch
 
 # launch a roundabout environment
-roslaunch turtlebot3_gazebo turtlebot3_autorace_roundabout.launch
+roslaunch mrst_simulation turtlebot3_autorace_roundabout.launch
 
 ```
+## Simple Code
+
+```shell
+from Env import Env
+   def main():
+      env=Env(scenario="roundabout")
+      n_episodes = 100
+      n_agents=12
+      episode_length=15
+      for e in range(n_episodes):
+         env.reset()
+         for et_i in range(episode_length):
+               print(et_i)
+               actions=[[1] for i in range(n_agents)]
+               next_obs, rewards, dones, speeds = env.step(actions, isTeamReward=True)
+   if __name__ == "__main__":
+      main()
+
+```
+
 ## Documentation
 
-For more detalis, please check our documentaion.
+For more detalis, please check our [documentaion]().
 
 ### Simple Example
 

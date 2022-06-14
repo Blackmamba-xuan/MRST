@@ -6,13 +6,48 @@
 Welcome to MRST's documentation!
 ================================
 
+.. figure:: Media/scenarios.png
+   :alt: scenarios
+   :align: center
+
 Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.
 
-Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.
+Check out the paper "From Multi-agent to Multi-robot: Scalable Training Platform for Multi-robot Reinforcement Learning" for background on some of the project goals.
+
+Simple Example
+~~~~~~~~~~~~~~~
+
+1. Launch the simulation environment
+   
+.. highlight:: sh
+::
+
+   roslaunch mrst_simulation turtlebot3_autorace_roundabout.launch
+   roslaunch mrst_simulation turtlebot3_autorace_control_roundabout.launch
+
+2. A simple code example for training
+   
+.. highlight:: sh
+::
+
+   from Env import Env
+   def main():
+      env=Env(scenario="roundabout")
+      n_episodes = 100
+      n_agents=12
+      episode_length=15
+      for e in range(n_episodes):
+         env.reset()
+         for et_i in range(episode_length):
+               print(et_i)
+               actions=[[1] for i in range(n_agents)]
+               next_obs, rewards, dones, speeds = env.step(actions, isTeamReward=True)
+   if __name__ == "__main__":
+      main()
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: What is more?:
    
    Getting start with MRST/index
    MRST Scenarios/index
@@ -20,17 +55,5 @@ Check out the paper at Link Hierarchical Reinforcement Learning for Distributed 
    Support for ROS Developer/index
    MRRL Research/index
 
-Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.
-
-Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.
-Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.
-
-Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`

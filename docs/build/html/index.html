@@ -36,7 +36,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">What is more?:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="Getting%20start%20with%20MRST/index.html">Getting Start with MRST</a></li>
 <li class="toctree-l1"><a class="reference internal" href="MRST%20Scenarios/index.html">MRST Scenarios</a></li>
@@ -71,45 +71,50 @@
              
   <div class="section" id="welcome-to-mrst-s-documentation">
 <h1>Welcome to MRST’s documentation!<a class="headerlink" href="#welcome-to-mrst-s-documentation" title="Permalink to this heading"></a></h1>
+<div class="figure align-center">
+<img alt="scenarios" src="_images/scenarios.png" />
+</div>
 <p>Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.</p>
-<p>Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.</p>
+<p>Check out the paper “From Multi-agent to Multi-robot: Scalable Training Platform for Multi-robot Reinforcement Learning” for background on some of the project goals.</p>
+<div class="section" id="simple-example">
+<h2>Simple Example<a class="headerlink" href="#simple-example" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Launch the simulation environment</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>roslaunch mrst_simulation turtlebot3_autorace_roundabout.launch
+roslaunch mrst_simulation turtlebot3_autorace_control_roundabout.launch
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>A simple code example for training</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>from Env import Env
+def main<span class="o">()</span>:
+   <span class="nv">env</span><span class="o">=</span>Env<span class="o">(</span><span class="nv">scenario</span><span class="o">=</span><span class="s2">&quot;roundabout&quot;</span><span class="o">)</span>
+   <span class="nv">n_episodes</span> <span class="o">=</span> <span class="m">100</span>
+   <span class="nv">n_agents</span><span class="o">=</span><span class="m">12</span>
+   <span class="nv">episode_length</span><span class="o">=</span><span class="m">15</span>
+   <span class="k">for</span> e in range<span class="o">(</span>n_episodes<span class="o">)</span>:
+      env.reset<span class="o">()</span>
+      <span class="k">for</span> et_i in range<span class="o">(</span>episode_length<span class="o">)</span>:
+            print<span class="o">(</span>et_i<span class="o">)</span>
+            <span class="nv">actions</span><span class="o">=[[</span><span class="m">1</span><span class="o">]</span> <span class="k">for</span> i in range<span class="o">(</span>n_agents<span class="o">)]</span>
+            next_obs, rewards, dones, <span class="nv">speeds</span> <span class="o">=</span> env.step<span class="o">(</span>actions, <span class="nv">isTeamReward</span><span class="o">=</span>True<span class="o">)</span>
+<span class="k">if</span> <span class="nv">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span>:
+   main<span class="o">()</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">What is more?:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Getting%20start%20with%20MRST/index.html">Getting Start with MRST</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Getting%20start%20with%20MRST/Install/contents.html">Hello Worlds</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="MRST%20Scenarios/index.html">Getting Start with MRSTMRST Scenarios</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MRST%20Scenarios/Install/contents.html">Hello Worlds</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="How%20to%20customize%20the%20robot/index.html">How to customize the robot</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="How%20to%20customize%20the%20robot/Install/contents.html">Hello Worlds</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Support%20for%20ROS%20Developer/index.html">Support for ROS Developer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Support%20for%20ROS%20Developer/Install/contents.html">Hello Worlds</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="MRRL%20Research/index.html">MRRL Research</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MRRL%20Research/Install/contents.html">Hello Worlds</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="Getting%20start%20with%20MRST/index.html">Getting Start with MRST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MRST%20Scenarios/index.html">MRST Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="How%20to%20customize%20the%20robot/index.html">How to customize the robot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Support%20for%20ROS%20Developer/index.html">Support for ROS Developer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MRRL%20Research/index.html">MRRL Research</a></li>
 </ul>
 </div>
-<p>Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.</p>
-<p>Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.
-Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.</p>
-<p>Check out the paper at Link Hierarchical Reinforcement Learning for Distributed Multi-robot Cooperation for background on some of the project goals.</p>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
-<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
-<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
-</ul>
 </div>
 
 
