@@ -1,8 +1,8 @@
 # MRST - A Scalable Training and Evaluation Platform for Multi-robot Reinforcement Learning
 Multi-robot Reinforcement Learning Scalable Training School (MRST) is a training and evaluation platform for reinforcement learning reasearch.
 
-Check out the background and project goals in our paper "From Multi-agent to Multi-robot: A Scalable Emulation
-Platform for Multi-robot Reinforcement Learning".
+Check out the background and project goals in our paper **_"From Multi-agent to Multi-robot: A Scalable Emulation
+Platform for Multi-robot Reinforcement Learning"_**.
 
 ![](https://github.com/Blackmamba-xuan/MRST/blob/main/screenshoot/scenarios.png)
 
