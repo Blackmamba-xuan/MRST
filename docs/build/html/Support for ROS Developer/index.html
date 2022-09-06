@@ -72,6 +72,88 @@
              
   <div class="section" id="support-for-ros-developer">
 <h1>Support for ROS Developer<a class="headerlink" href="#support-for-ros-developer" title="Permalink to this heading"></a></h1>
+<p>One of the main characteristics of our platform is we intergrate the communication and control of ROS. User can get the sensor data and control the robot in the ROSEntity class.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>class ROSEntity<span class="o">(</span>object<span class="o">)</span>:
+
+def __init__<span class="o">(</span>self,name,pos<span class="o">)</span>:
+    self.counter <span class="o">=</span> <span class="m">1</span>
+    self.sub_scan <span class="o">=</span> rospy.Subscriber<span class="o">(</span>name + <span class="s1">&#39;/scan&#39;</span>, LaserScan, self.scanCallback, <span class="nv">queue_size</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+    self.sub_odom <span class="o">=</span> rospy.Subscriber<span class="o">(</span>name + <span class="s1">&#39;/odom&#39;</span>, Odometry, self.getOdometry, <span class="nv">queue_size</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+    self.sub_speed <span class="o">=</span> rospy.Subscriber<span class="o">(</span>name + <span class="s1">&#39;/cmd_vel&#39;</span>, Twist, self.speedCallBack, <span class="nv">queue_size</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+    self.sub_start_turn <span class="o">=</span> rospy.Subscriber<span class="o">(</span>name + <span class="s1">&#39;/control/start_turn&#39;</span>, Bool, self.startTrunCallBack,queue_size<span class="o">=</span><span class="m">1</span><span class="o">)</span>
+    self.sub_finish_turn <span class="o">=</span> rospy.Subscriber<span class="o">(</span>name + <span class="s1">&#39;/control/finish_turn&#39;</span>, Bool, self.finishTrunCallBack, <span class="nv">queue_size</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+    self.pub_reSet <span class="o">=</span> rospy.Publisher<span class="o">(</span>name + <span class="s1">&#39;/reset_env&#39;</span>, Bool, <span class="nv">queue_size</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+    self.pub_lane_behavior <span class="o">=</span> rospy.Publisher<span class="o">(</span>name + <span class="s1">&#39;/lane_behavior&#39;</span>, UInt8, <span class="nv">queue_size</span><span class="o">=</span><span class="m">1</span><span class="o">)</span>
+    <span class="c1">#self.pub_cmd_vel = rospy.Publisher(name + &#39;cmd_vel&#39;, Twist, queue_size=1)</span>
+    self.scan_data <span class="o">=</span> <span class="o">[</span><span class="m">3</span>.5<span class="o">]</span>*36
+    self.name<span class="o">=</span>name
+    self.speed_x<span class="o">=</span><span class="m">0</span>.1
+    self.pos<span class="o">=</span>pos
+    self.isFinishTurn<span class="o">=</span>False
+    self.isStartTurn<span class="o">=</span><span class="m">0</span>
+
+
+def step<span class="o">(</span>self,action<span class="o">)</span>:
+    <span class="nv">behavior_msg</span> <span class="o">=</span> UInt8<span class="o">()</span>
+    behavior_msg.data <span class="o">=</span> np.uint8<span class="o">(</span>action<span class="o">)</span>
+    self.pub_lane_behavior.publish<span class="o">(</span>behavior_msg<span class="o">)</span>
+
+def reset<span class="o">(</span>self<span class="o">)</span>:
+    self.isFinishTurn <span class="o">=</span> False
+    self.isTurnFlag <span class="o">=</span> <span class="m">0</span>
+    self.pub_reSet.publish<span class="o">(</span>Bool<span class="o">(</span><span class="nv">data</span><span class="o">=</span>True<span class="o">))</span>
+    self.pub_reSet.publish<span class="o">(</span>Bool<span class="o">(</span><span class="nv">data</span><span class="o">=</span>True<span class="o">))</span>
+    self.pub_reSet.publish<span class="o">(</span>Bool<span class="o">(</span><span class="nv">data</span><span class="o">=</span>True<span class="o">))</span>
+
+def getObs<span class="o">(</span>self<span class="o">)</span>:
+    <span class="nv">obs</span><span class="o">=</span>copy.deepcopy<span class="o">(</span>self.scan_data<span class="o">)</span>
+    <span class="c1">#print(&#39;&#39;)</span>
+    obs.append<span class="o">(</span>self.isStartTurn<span class="o">)</span>
+    obs.append<span class="o">(</span>self.speed_x<span class="o">)</span>
+    <span class="nv">obs</span> <span class="o">=</span> np.append<span class="o">(</span>obs, self.pos<span class="o">[</span><span class="m">0</span><span class="o">])</span>
+    <span class="nv">obs</span> <span class="o">=</span> np.append<span class="o">(</span>obs, self.pos<span class="o">[</span><span class="m">1</span><span class="o">])</span>
+    <span class="k">return</span> np.array<span class="o">(</span>obs<span class="o">)</span>
+
+def scanCallback<span class="o">(</span>self,data<span class="o">)</span>:
+    <span class="k">if</span> self.counter % <span class="m">3</span> !<span class="o">=</span> <span class="m">0</span>:
+        self.counter +<span class="o">=</span> <span class="m">1</span>
+        <span class="k">return</span>
+    <span class="k">else</span>:
+        self.counter <span class="o">=</span> <span class="m">1</span>
+    <span class="c1">#print(&#39;enter scanCallback&#39;)</span>
+    <span class="nv">scan</span> <span class="o">=</span> data
+    <span class="nv">scan_range</span> <span class="o">=</span> <span class="o">[]</span>
+    <span class="c1"># print(&#39;scan_data_lenth: &#39;,len(scan.ranges))</span>
+    <span class="k">for</span> i in range<span class="o">(</span>len<span class="o">(</span>scan.ranges<span class="o">))</span>:
+        <span class="k">if</span> scan.ranges<span class="o">[</span>i<span class="o">]</span> <span class="o">==</span> float<span class="o">(</span><span class="s1">&#39;Inf&#39;</span><span class="o">)</span>:
+            scan_range.append<span class="o">(</span><span class="m">3</span>.5<span class="o">)</span>
+        <span class="k">elif</span> scan.ranges<span class="o">[</span>i<span class="o">]==</span>float<span class="o">(</span><span class="s1">&#39;inf&#39;</span><span class="o">)</span>:
+            scan_range.append<span class="o">(</span><span class="m">3</span>.5<span class="o">)</span>
+        <span class="k">elif</span> np.isnan<span class="o">(</span>scan.ranges<span class="o">[</span>i<span class="o">])</span>:
+            scan_range.append<span class="o">(</span><span class="m">0</span><span class="o">)</span>
+        <span class="k">else</span>:
+            scan_range.append<span class="o">(</span>scan.ranges<span class="o">[</span>i<span class="o">])</span>
+    <span class="nv">scan_range36</span> <span class="o">=</span> <span class="o">[</span>np.min<span class="o">(</span>scan_range<span class="o">[</span>i * <span class="m">10</span>:<span class="o">(</span>i + <span class="m">1</span><span class="o">)</span> * <span class="m">10</span><span class="o">])</span> <span class="k">for</span> i in range<span class="o">(</span><span class="m">36</span><span class="o">)]</span>
+    self.scan_data <span class="o">=</span> scan_range36
+
+def speedCallBack<span class="o">(</span>self, msg<span class="o">)</span>:
+    <span class="c1">#print(&#39;enter speed callback: &#39;, msg.linear.x)</span>
+    self.speed_x <span class="o">=</span> msg.linear.x
+
+def getOdometry<span class="o">(</span>self, odom<span class="o">)</span>:
+    self.pos <span class="o">=</span> <span class="o">[</span>odom.pose.pose.position.x,odom.pose.pose.position.y<span class="o">]</span>
+
+def finishTrunCallBack<span class="o">(</span>self,msg<span class="o">)</span>:
+    print<span class="o">(</span><span class="s1">&#39;enter finish turn&#39;</span><span class="o">)</span>
+    self.isFinishTurn<span class="o">=</span>True
+def startTrunCallBack<span class="o">(</span>self,msg<span class="o">)</span>:
+    print<span class="o">(</span><span class="s1">&#39;enter start turn&#39;</span><span class="o">)</span>
+    self.isStartTurn<span class="o">=</span><span class="m">1</span>
+
+def getPos<span class="o">(</span>self<span class="o">)</span>:
+    <span class="k">return</span> self.pos
+</pre></div>
+</div>
 </div>
 
 
